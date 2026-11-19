@@ -1,0 +1,1437 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CUIDAR+ | Ruta Oncológica y Paliativa</title>
+
+<style>
+:root {
+  --navy:#142b45;
+  --blue:#2463a6;
+  --blue-light:#eaf2fb;
+  --teal:#16877d;
+  --teal-light:#e7f5f2;
+  --bg:#f3f6fa;
+  --white:#fff;
+  --text:#243449;
+  --muted:#718096;
+  --border:#dce4ed;
+  --red:#b83e45;
+  --red-light:#fff0f0;
+  --yellow:#a66b12;
+  --yellow-light:#fff6e5;
+  --green:#25805b;
+  --green-light:#e9f7ef;
+  --shadow:0 5px 20px rgba(25,45,70,.06);
+}
+
+* {box-sizing:border-box}
+
+body {
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+header {
+  background:var(--navy);
+  color:white;
+  padding:22px 5%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.brand {
+  display:flex;
+  align-items:center;
+  gap:13px;
+}
+
+.logo {
+  width:43px;
+  height:43px;
+  border:2px solid #70c6bb;
+  border-radius:13px;
+  display:grid;
+  place-items:center;
+  font-size:23px;
+  color:#70c6bb;
+  font-weight:bold;
+}
+
+.brand h1 {
+  margin:0;
+  font-size:23px;
+  letter-spacing:1px;
+}
+
+.brand p {
+  margin:4px 0 0;
+  font-size:12px;
+  color:#c1d2e3;
+}
+
+.header-tag {
+  font-size:12px;
+  color:#d9e7f4;
+  border:1px solid #55708d;
+  padding:9px 13px;
+  border-radius:20px;
+}
+
+.container {
+  max-width:1250px;
+  margin:28px auto;
+  padding:0 20px;
+}
+
+.intro {
+  background:white;
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:24px;
+  box-shadow:var(--shadow);
+  margin-bottom:22px;
+}
+
+.intro h2 {
+  margin:0 0 9px;
+  color:var(--navy);
+  font-size:24px;
+}
+
+.intro p {
+  color:var(--muted);
+  line-height:1.6;
+  margin:0;
+  max-width:850px;
+}
+
+.notice {
+  background:var(--blue-light);
+  border-left:4px solid var(--blue);
+  padding:13px 16px;
+  border-radius:7px;
+  font-size:13px;
+  line-height:1.5;
+  margin-top:17px;
+}
+
+.tabs {
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:20px 0;
+}
+
+.tab {
+  border:1px solid var(--border);
+  background:white;
+  padding:11px 16px;
+  border-radius:9px;
+  cursor:pointer;
+  color:var(--text);
+  font-weight:bold;
+  font-size:13px;
+}
+
+.tab.active {
+  background:var(--navy);
+  color:white;
+  border-color:var(--navy);
+}
+
+.layout {
+  display:grid;
+  grid-template-columns:330px 1fr;
+  gap:20px;
+  align-items:start;
+}
+
+.panel {
+  background:white;
+  border:1px solid var(--border);
+  border-radius:14px;
+  box-shadow:var(--shadow);
+}
+
+.sidebar {
+  padding:18px;
+  position:sticky;
+  top:15px;
+}
+
+.sidebar h3 {
+  font-size:15px;
+  color:var(--navy);
+  margin:0 0 14px;
+}
+
+.progress-track {
+  height:9px;
+  background:#e7edf3;
+  border-radius:10px;
+  overflow:hidden;
+  margin-bottom:8px;
+}
+
+.progress-fill {
+  height:100%;
+  width:0%;
+  background:var(--teal);
+  transition:width .3s ease;
+}
+
+.progress-label {
+  font-size:11px;
+  color:var(--muted);
+  margin-bottom:17px;
+}
+
+.stage-list {
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.stage-link {
+  display:flex;
+  gap:11px;
+  align-items:center;
+  border:1px solid transparent;
+  background:white;
+  padding:10px 9px;
+  border-radius:9px;
+  text-align:left;
+  cursor:pointer;
+  color:var(--text);
+  width:100%;
+}
+
+.stage-link:hover {background:var(--bg)}
+
+.stage-link.active {
+  background:var(--blue-light);
+  border-color:#b9d1ec;
+  color:var(--blue);
+  font-weight:bold;
+}
+
+.stage-link.done .stage-number {
+  background:var(--green-light);
+  color:var(--green);
+}
+
+.stage-number {
+  min-width:27px;
+  height:27px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:#edf1f5;
+  font-size:12px;
+  font-weight:bold;
+}
+
+.stage-link.active .stage-number {
+  background:var(--blue);
+  color:white;
+}
+
+.stage-name {
+  font-size:12px;
+  line-height:1.35;
+}
+
+.main-panel {
+  padding:26px;
+  min-height:600px;
+}
+
+.stage-kicker {
+  color:var(--teal);
+  font-size:11px;
+  font-weight:bold;
+  letter-spacing:1.3px;
+  text-transform:uppercase;
+}
+
+.stage-title {
+  color:var(--navy);
+  font-size:27px;
+  margin:9px 0;
+}
+
+.stage-description {
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.6;
+  margin-bottom:23px;
+}
+
+.section-title {
+  color:var(--navy);
+  font-size:15px;
+  margin:23px 0 12px;
+}
+
+.info-box {
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:15px;
+  margin:12px 0;
+  line-height:1.55;
+  font-size:13px;
+}
+
+.info-box.blue {
+  background:var(--blue-light);
+  border-color:#d4e3f4;
+}
+
+.info-box.teal {
+  background:var(--teal-light);
+  border-color:#c9e7e1;
+}
+
+.info-box.yellow {
+  background:var(--yellow-light);
+  border-color:#f0dfb9;
+}
+
+.info-box.red {
+  background:var(--red-light);
+  border-color:#f1d1d1;
+}
+
+.info-box strong {
+  display:block;
+  margin-bottom:5px;
+}
+
+.checklist {
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+}
+
+.check-item {
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  background:#fafbfd;
+  border:1px solid var(--border);
+  padding:11px;
+  border-radius:8px;
+  font-size:13px;
+  line-height:1.45;
+}
+
+.check-item input {
+  margin-top:2px;
+  accent-color:var(--teal);
+}
+
+.decision {
+  background:#f8fafc;
+  border:1px solid var(--border);
+  padding:17px;
+  border-radius:11px;
+  margin:15px 0;
+}
+
+.decision h4 {
+  margin:0 0 12px;
+  color:var(--navy);
+  font-size:14px;
+}
+
+.option {
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  background:white;
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:12px;
+  margin-top:8px;
+  cursor:pointer;
+  font-size:13px;
+  line-height:1.45;
+}
+
+.option:hover {border-color:var(--blue)}
+
+.option input {
+  margin-top:2px;
+  accent-color:var(--blue);
+}
+
+.result {
+  display:none;
+  padding:15px;
+  margin-top:12px;
+  border-radius:9px;
+  font-size:13px;
+  line-height:1.6;
+}
+
+.result.show {display:block}
+.result.green {background:var(--green-light)}
+.result.yellow {background:var(--yellow-light)}
+.result.red {background:var(--red-light)}
+.result.blue {background:var(--blue-light)}
+
+.actions {
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+  border-top:1px solid var(--border);
+  padding-top:20px;
+  margin-top:28px;
+}
+
+.btn {
+  border:none;
+  border-radius:8px;
+  padding:12px 17px;
+  cursor:pointer;
+  font-size:13px;
+  font-weight:bold;
+}
+
+.btn-primary {
+  background:var(--blue);
+  color:white;
+}
+
+.btn-primary:hover {background:#194f88}
+
+.btn-secondary {
+  background:#edf1f5;
+  color:var(--text);
+}
+
+.btn-teal {
+  background:var(--teal);
+  color:white;
+}
+
+.btn:disabled {
+  opacity:.4;
+  cursor:not-allowed;
+}
+
+.hidden {display:none!important}
+
+.tool-panel {
+  padding:25px;
+  background:white;
+  border:1px solid var(--border);
+  border-radius:14px;
+  box-shadow:var(--shadow);
+}
+
+.tool-panel h2 {
+  color:var(--navy);
+  margin-top:0;
+}
+
+.tool-panel p {
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.6;
+}
+
+.grid-cards {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+  margin-top:18px;
+}
+
+.mini-card {
+  padding:16px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:#fafbfd;
+}
+
+.mini-card h3 {
+  margin:0 0 8px;
+  color:var(--navy);
+  font-size:14px;
+}
+
+.mini-card p {
+  margin:0;
+  font-size:12px;
+}
+
+.field {margin:15px 0}
+
+.field label {
+  display:block;
+  font-weight:bold;
+  color:var(--navy);
+  font-size:13px;
+  margin-bottom:7px;
+}
+
+.field input,.field select,.field textarea {
+  width:100%;
+  padding:11px;
+  border:1px solid var(--border);
+  border-radius:8px;
+  font-family:inherit;
+  font-size:13px;
+  background:white;
+}
+
+.field textarea {
+  min-height:110px;
+  resize:vertical;
+  display:block;
+  line-height:1.5;
+}
+
+footer {
+  text-align:center;
+  color:var(--muted);
+  font-size:11px;
+  padding:30px 10px;
+  line-height:1.6;
+}
+
+@media(max-width:850px) {
+  .layout {grid-template-columns:1fr}
+  .sidebar {position:static}
+  .stage-list {
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+
+@media(max-width:520px) {
+  .container {padding:0 11px}
+  .main-panel {padding:18px}
+  .stage-title {font-size:23px}
+  .grid-cards {grid-template-columns:1fr}
+  .stage-list {grid-template-columns:1fr}
+  header {padding:17px}
+}
+
+@media print {
+  header,.tabs,.sidebar,.actions,footer {
+    display:none!important;
+  }
+  .container {margin:0;padding:0}
+  .panel,.tool-panel {box-shadow:none}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="brand">
+    <div class="logo">+</div>
+    <div>
+      <h1>CUIDAR+</h1>
+      <p>Ruta integrada de atención oncológica y cuidados paliativos</p>
+    </div>
+  </div>
+  <div class="header-tag">PROTOCOLO INTERACTIVO · PROTOTIPO</div>
+</header>
+
+<div class="container">
+
+<section class="intro">
+  <h2>La atención paliativa debe llegar a tiempo.</h2>
+  <p>
+    Una ruta de acompañamiento desde el ingreso del paciente oncológico
+    hasta la atención en los últimos días y el apoyo a sus familiares.
+    El objetivo es facilitar la coordinación entre oncología, cuidados
+    paliativos, paciente y familia.
+  </p>
+  <div class="notice">
+    <strong>Principio fundamental:</strong>
+    los cuidados paliativos no significan abandonar el tratamiento
+    oncológico. Pueden integrarse desde etapas tempranas y adaptarse
+    a las necesidades del paciente.
+    Esta herramienta orienta el proceso, pero no sustituye el criterio
+    clínico ni los protocolos institucionales.
+  </div>
+</section>
+
+<nav class="tabs">
+  <button class="tab active" onclick="showTab('route',this)">Ruta del paciente</button>
+  <button class="tab" onclick="showTab('team',this)">Equipo interdisciplinario</button>
+  <button class="tab" onclick="showTab('communication',this)">Comunicación</button>
+  <button class="tab" onclick="showTab('alerts',this)">Control de derivaciones</button>
+  <button class="tab" onclick="showTab('home',this)">Atención domiciliaria</button>
+  <button class="tab" onclick="showTab('summary',this)">Resumen final</button>
+</nav>
+
+<section id="routeTab">
+  <div class="layout">
+
+    <aside class="panel sidebar">
+      <h3>Recorrido del paciente</h3>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-label" id="progressLabel">
+        0 de 11 etapas revisadas
+      </div>
+      <div class="stage-list" id="stageList"></div>
+    </aside>
+
+    <main class="panel main-panel" id="stageContent"></main>
+
+  </div>
+</section>
+
+<section id="teamTab" class="tool-panel hidden">
+  <h2>Equipo interdisciplinario</h2>
+  <p>
+    El cuidado paliativo requiere coordinación entre profesionales.
+    Cada integrante interviene según las necesidades identificadas
+    y las preferencias del paciente.
+  </p>
+
+  <div class="grid-cards">
+    <div class="mini-card">
+      <h3>Oncólogo tratante</h3>
+      <p>Coordina el tratamiento oncológico, identifica necesidades paliativas y activa la derivación cuando corresponde.</p>
+    </div>
+    <div class="mini-card">
+      <h3>Médicos paliativistas</h3>
+      <p>Evalúan síntomas, sufrimiento, necesidades clínicas y planifican la atención paliativa con el paciente.</p>
+    </div>
+    <div class="mini-card">
+      <h3>Enfermería paliativa</h3>
+      <p>Realiza seguimiento, educación, cuidados, evaluación de síntomas y apoyo al cuidador.</p>
+    </div>
+    <div class="mini-card">
+      <h3>Psicólogo</h3>
+      <p>Ofrece apoyo emocional al paciente y a sus familiares, respetando sus tiempos y necesidades.</p>
+    </div>
+    <div class="mini-card">
+      <h3>Trabajador social</h3>
+      <p>Evalúa la situación familiar, recursos disponibles, necesidades económicas y acceso a servicios.</p>
+    </div>
+    <div class="mini-card">
+      <h3>Asesor espiritual</h3>
+      <p>Ofrece acompañamiento espiritual si el paciente lo desea, respetando sus creencias o ausencia de religión.</p>
+    </div>
+    <div class="mini-card">
+      <h3>Coordinador de red</h3>
+      <p>Supervisa las derivaciones pendientes, facilita la comunicación entre servicios y ayuda a resolver barreras.</p>
+    </div>
+    <div class="mini-card">
+      <h3>Familia y cuidador</h3>
+      <p>Participan según la voluntad del paciente y reciben orientación para el cuidado y acompañamiento.</p>
+    </div>
+  </div>
+
+  <div class="info-box teal">
+    <strong>Regla de coordinación</strong>
+    Debe existir un responsable identificado del plan de atención
+    y un canal de comunicación entre oncología y el equipo paliativo.
+  </div>
+</section>
+
+<section id="communicationTab" class="tool-panel hidden">
+  <h2>Comunicación con el paciente y su familia</h2>
+  <p>
+    La comunicación debe ser honesta, progresiva, empática y centrada
+    en lo que el paciente desea saber.
+  </p>
+
+  <div class="info-box blue">
+    <strong>1. Explorar antes de informar</strong>
+    Preguntar qué entiende el paciente sobre su enfermedad,
+    qué le preocupa y cuánto desea conocer en ese momento.
+  </div>
+  <div class="info-box blue">
+    <strong>2. Preguntar a quién desea involucrar</strong>
+    No asumir que la familia debe recibir toda la información.
+    Confirmar con el paciente a quién quiere incluir.
+  </div>
+  <div class="info-box blue">
+    <strong>3. Comunicar con claridad y sensibilidad</strong>
+    Utilizar lenguaje comprensible, evitar falsas promesas y
+    comprobar que el paciente haya comprendido.
+  </div>
+  <div class="info-box blue">
+    <strong>4. Explicar el papel de los cuidados paliativos</strong>
+    Presentarlos como atención activa para aliviar síntomas,
+    mejorar calidad de vida y acompañar al paciente y su familia.
+  </div>
+  <div class="info-box blue">
+    <strong>5. Respetar el tiempo emocional</strong>
+    Permitir pausas, preguntas y nuevas conversaciones.
+    No forzar una decisión ni entregar toda la información de golpe.
+  </div>
+
+  <h3 class="section-title">Preguntas útiles para el profesional</h3>
+  <ul style="font-size:13px;line-height:1.9">
+    <li>¿Qué entiende usted sobre su enfermedad hasta este momento?</li>
+    <li>¿Hay algo que le preocupe especialmente?</li>
+    <li>¿Cuánta información desea recibir hoy?</li>
+    <li>¿Hay alguna persona que quisiera tener a su lado en esta conversación?</li>
+    <li>¿Qué es lo más importante para usted en esta etapa de su vida?</li>
+    <li>¿Dónde se sentiría más cómodo recibiendo atención, si fuera posible?</li>
+  </ul>
+
+  <div class="info-box yellow">
+    <strong>Evitar</strong>
+    Presentar paliativos como una sentencia de muerte, abandono
+    terapéutico o una obligación de dejar el tratamiento oncológico.
+  </div>
+</section>
+
+<section id="alertsTab" class="tool-panel hidden">
+  <h2>Control de derivaciones</h2>
+  <p>
+    Este módulo representa un mecanismo de seguridad para reducir
+    omisiones y demoras. Los criterios, responsables y plazos deben
+    ser definidos y aprobados por cada institución.
+  </p>
+
+  <div class="info-box blue">
+    <strong>¿Cómo funciona el mecanismo?</strong>
+    Cuando se identifican necesidades paliativas, se genera una
+    solicitud de valoración. Si no hay respuesta dentro del plazo
+    institucional, se avisa al coordinador de red para verificar
+    qué está ocurriendo.
+  </div>
+
+  <div class="grid-cards">
+    <div class="mini-card">
+      <h3>1. Identificación</h3>
+      <p>Se documenta que el paciente cumple criterios institucionales para valoración paliativa.</p>
+    </div>
+    <div class="mini-card">
+      <h3>2. Alerta al oncólogo</h3>
+      <p>Se comunica la necesidad de revisar y activar la derivación.</p>
+    </div>
+    <div class="mini-card">
+      <h3>3. Control del plazo</h3>
+      <p>Se verifica si la solicitud fue atendida dentro del plazo definido por la institución.</p>
+    </div>
+    <div class="mini-card">
+      <h3>4. Escalamiento</h3>
+      <p>Si continúa pendiente, se informa al coordinador para revisar barreras y facilitar una solución.</p>
+    </div>
+  </div>
+
+  <h3 class="section-title">Simulador de situación de derivación</h3>
+
+  <div class="field">
+    <label>Estado de la derivación</label>
+    <select id="referralStatus">
+      <option value="pending">Pendiente de respuesta</option>
+      <option value="sent">Solicitud enviada</option>
+      <option value="received">Recibida por paliativos</option>
+      <option value="clinical">No se deriva por decisión clínica justificada</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label>¿Se ha superado el plazo institucional?</label>
+    <select id="deadlineStatus">
+      <option value="no">No</option>
+      <option value="yes">Sí</option>
+      <option value="unknown">No se ha definido o no se conoce</option>
+    </select>
+  </div>
+
+  <button class="btn btn-primary" onclick="checkReferral()">Evaluar situación</button>
+  <div id="referralResult" class="result"></div>
+
+  <div class="info-box yellow">
+    <strong>Importante</strong>
+    La alerta no debe utilizarse para castigar al oncólogo.
+    Su función es evitar que un paciente quede sin valoración
+    por falta de comunicación, coordinación u omisión administrativa.
+    Nunca debe retrasar la atención urgente.
+  </div>
+</section>
+
+<section id="homeTab" class="tool-panel hidden">
+  <h2>Evaluación de atención domiciliaria</h2>
+  <p>
+    La atención en casa debe evaluarse de forma individual.
+    No todos los pacientes pueden o desean permanecer en domicilio.
+  </p>
+
+  <div id="homeChecklist" class="checklist">
+    <label class="check-item"><input type="checkbox"> El paciente expresa que desea recibir atención en casa.</label>
+    <label class="check-item"><input type="checkbox"> El equipo considera que la situación clínica permite esta modalidad.</label>
+    <label class="check-item"><input type="checkbox"> Existe un cuidador disponible, si se necesita.</label>
+    <label class="check-item"><input type="checkbox"> Se han evaluado las condiciones del domicilio.</label>
+    <label class="check-item"><input type="checkbox"> Existe un plan de control de síntomas y medicación.</label>
+    <label class="check-item"><input type="checkbox"> Se dispone de equipos y materiales necesarios, si corresponden.</label>
+    <label class="check-item"><input type="checkbox"> La familia o cuidador recibió orientación práctica.</label>
+    <label class="check-item"><input type="checkbox"> Existe un teléfono de contacto y un plan ante crisis.</label>
+    <label class="check-item"><input type="checkbox"> Se definió quién realizará el seguimiento y con qué frecuencia.</label>
+  </div>
+
+  <button class="btn btn-teal" onclick="evaluateHome()">Revisar condiciones</button>
+  <div id="homeResult" class="result"></div>
+
+  <div class="info-box yellow">
+    <strong>Si la atención domiciliaria no es viable</strong>
+    Se debe ofrecer una alternativa segura y digna. La atención
+    hospitalaria o en otra institución no representa un fracaso.
+    Las preferencias del paciente deben seguir orientando el plan.
+  </div>
+</section>
+
+<section id="summaryTab" class="tool-panel hidden">
+  <h2>Resumen del recorrido</h2>
+  <p>
+    Revisión de las 11 etapas y de las tareas marcadas durante
+    la navegación. Este resumen es local y temporal: no constituye
+    una historia clínica ni se guarda en un servidor.
+  </p>
+  <div id="summaryContent"></div>
+  <button class="btn btn-primary" onclick="window.print()">Imprimir resumen</button>
+  <button class="btn btn-secondary" onclick="resetProgress()">Reiniciar recorrido</button>
+</section>
+
+</div>
+
+<footer>
+  CUIDAR+ · Prototipo de orientación y coordinación asistencial.<br>
+  No sustituye protocolos clínicos, evaluación profesional ni decisiones compartidas con el paciente.
+  No introducir datos identificables ni información clínica real en esta demostración.
+</footer>
+
+<script>
+const stages = [
+{
+ title:"Ingreso del paciente oncológico",
+ desc:"El recorrido comienza cuando el paciente ingresa al sistema de atención oncológica, ya sea en consulta, hospital o clínica.",
+ responsible:"Oncólogo tratante, médico responsable y equipo asistencial.",
+ tasks:[
+  "Identificar al paciente y confirmar el servicio responsable.",
+  "Revisar el diagnóstico oncológico y la situación clínica actual.",
+  "Identificar al profesional que coordinará la atención.",
+  "Explicar al paciente cómo funciona el proceso asistencial."
+ ],
+ decision:"¿El paciente está incorporado a un servicio oncológico y tiene un profesional responsable?",
+ options:[
+  ["yes","Sí, tiene un servicio y responsable asignado."],
+  ["no","No, necesita orientación o asignación de servicio."]
+ ],
+ outcomes:{
+  yes:["blue","Continuar con la identificación de necesidades paliativas.","La atención oncológica continúa y se realiza una valoración periódica de necesidades."],
+  no:["yellow","Resolver el ingreso y la coordinación inicial.","Identificar el servicio responsable antes de continuar el recorrido."]
+ }
+},
+{
+ title:"Identificación temprana de necesidades paliativas",
+ desc:"No se debe esperar únicamente a que el tratamiento oncológico termine. Las necesidades paliativas pueden aparecer en diferentes momentos de la enfermedad.",
+ responsible:"Oncólogo tratante y equipo asistencial.",
+ tasks:[
+  "Evaluar síntomas físicos y sufrimiento emocional.",
+  "Explorar necesidades sociales, familiares y espirituales.",
+  "Revisar la evolución de la enfermedad y las necesidades de apoyo.",
+  "Aplicar los criterios de identificación aprobados por la institución.",
+  "Documentar los hallazgos y la fecha de evaluación."
+ ],
+ decision:"¿Se identifican necesidades que justifican una valoración paliativa?",
+ options:[
+  ["yes","Sí, se identifican necesidades paliativas."],
+  ["no","No, por ahora no se identifican."],
+  ["urgent","Hay una situación clínica urgente."]
+ ],
+ outcomes:{
+  yes:["green","Activar la valoración paliativa.","La derivación puede coexistir con el tratamiento oncológico."],
+  no:["yellow","Continuar seguimiento y reevaluación.","Registrar la evaluación y establecer cuándo se revisarán nuevamente las necesidades."],
+  urgent:["red","Priorizar la atención urgente.","Atender la urgencia según el protocolo institucional. No esperar el circuito ordinario de derivación."]
+ }
+},
+{
+ title:"Decisión clínica y activación de la ruta",
+ desc:"El profesional revisa los hallazgos y decide la acción clínica correspondiente. La decisión debe quedar documentada.",
+ responsible:"Oncólogo tratante y médico responsable.",
+ tasks:[
+  "Revisar las necesidades identificadas.",
+  "Aplicar los criterios institucionales de derivación.",
+  "Explicar al paciente el objetivo de la valoración paliativa.",
+  "Documentar la decisión y sus fundamentos.",
+  "Si no se deriva, registrar el motivo y el plan de reevaluación."
+ ],
+ decision:"¿Cuál es la decisión clínica?",
+ options:[
+  ["yes","Activar derivación a cuidados paliativos."],
+  ["later","No derivar todavía; programar reevaluación."],
+  ["urgent","Necesita atención urgente."]
+ ],
+ outcomes:{
+  yes:["green","Activar derivación.","Enviar solicitud al equipo paliativo y confirmar su recepción."],
+  later:["yellow","Registrar y programar seguimiento.","La decisión debe tener una justificación clínica documentada y una fecha de reevaluación."],
+  urgent:["red","Atención urgente.","Aplicar el circuito de urgencia institucional sin esperar la derivación ordinaria."]
+ }
+},
+{
+ title:"Derivación y coordinación de red",
+ desc:"La derivación no termina cuando se envía una solicitud. Es necesario confirmar que el equipo receptor la recibió y que existe un plan de atención.",
+ responsible:"Oncólogo tratante, equipo paliativo y coordinador de red.",
+ tasks:[
+  "Enviar la solicitud de valoración paliativa.",
+  "Incluir la información clínica necesaria mediante el canal autorizado.",
+  "Confirmar recepción por el servicio paliativo.",
+  "Identificar al profesional responsable de la valoración.",
+  "Registrar fecha de envío, recepción y respuesta.",
+  "Escalar al coordinador si la derivación sigue pendiente según los plazos institucionales."
+ ],
+ decision:"¿La derivación fue recibida y tiene responsable asignado?",
+ options:[
+  ["yes","Sí, fue recibida y hay responsable."],
+  ["no","No, continúa pendiente."],
+  ["clinical","Existe una decisión clínica justificada de no derivar."]
+ ],
+ outcomes:{
+  yes:["green","Continuar con la comunicación y evaluación.","Confirmar fecha de valoración y mantener coordinación con oncología."],
+  no:["yellow","Activar seguimiento de la solicitud.","Verificar la causa de la demora y comunicar al coordinador cuando corresponda."],
+  clinical:["blue","Documentar la decisión clínica.","Registrar los fundamentos y el plan de seguimiento o reevaluación."]
+ }
+},
+{
+ title:"Comunicación con paciente y familia",
+ desc:"La conversación debe ser progresiva y adaptada a lo que el paciente desea saber. La familia participa de acuerdo con las preferencias y autorización del paciente.",
+ responsible:"Médico tratante, paliativista y psicólogo, según necesidades.",
+ tasks:[
+  "Explorar qué entiende el paciente sobre su enfermedad.",
+  "Preguntar cuánta información desea recibir.",
+  "Identificar a las personas que desea incluir en la conversación.",
+  "Explicar que paliativos no significa abandono.",
+  "Evitar falsas promesas y mensajes bruscos o impositivos.",
+  "Ofrecer nuevas conversaciones y apoyo emocional."
+ ],
+ decision:"¿Se han explorado las preferencias de información y participación del paciente?",
+ options:[
+  ["yes","Sí, se conocen sus preferencias."],
+  ["no","Todavía no; necesita más tiempo o apoyo."]
+ ],
+ outcomes:{
+  yes:["green","Respetar las preferencias expresadas.","Continuar la conversación de acuerdo con lo que el paciente desea conocer y compartir."],
+  no:["yellow","Ofrecer una nueva conversación.","No forzar decisiones. Facilitar apoyo psicológico y permitir que el paciente marque el ritmo."]
+ }
+},
+{
+ title:"Evaluación interdisciplinaria",
+ desc:"El equipo paliativo realiza una valoración integral para comprender los síntomas, las necesidades emocionales, familiares, sociales y espirituales.",
+ responsible:"Médicos paliativistas, enfermería, psicología, trabajo social y asesoría espiritual si se desea.",
+ tasks:[
+  "Evaluar dolor y otros síntomas.",
+  "Explorar bienestar emocional y necesidades psicológicas.",
+  "Evaluar situación familiar y disponibilidad de cuidadores.",
+  "Identificar barreras económicas o sociales.",
+  "Preguntar si desea acompañamiento espiritual.",
+  "Registrar prioridades y preferencias del paciente."
+ ],
+ decision:"¿Se ha completado una evaluación interdisciplinaria suficiente para elaborar un plan?",
+ options:[
+  ["yes","Sí, se cuenta con una evaluación integral."],
+  ["no","No, faltan evaluaciones o información."]
+ ],
+ outcomes:{
+  yes:["green","Elaborar un plan individual.","Compartir los hallazgos relevantes con el equipo responsable."],
+  no:["yellow","Completar las evaluaciones pendientes.","Asignar responsables y coordinar las valoraciones necesarias."]
+ }
+},
+{
+ title:"Plan individual compartido",
+ desc:"El plan debe integrar los objetivos del paciente, el control de síntomas y la coordinación entre oncología y paliativos.",
+ responsible:"Oncólogo, equipo paliativo, enfermería y paciente; familia según sus preferencias.",
+ tasks:[
+  "Definir objetivos de atención con el paciente.",
+  "Establecer el plan de control de síntomas.",
+  "Coordinar tratamiento oncológico y paliativo.",
+  "Identificar necesidades de apoyo psicológico y social.",
+  "Definir responsables y canales de comunicación.",
+  "Registrar preferencias y decisiones compartidas.",
+  "Programar seguimiento y revisión del plan."
+ ],
+ decision:"¿Existe un plan acordado y documentado?",
+ options:[
+  ["yes","Sí, el plan está acordado."],
+  ["no","No, requiere completar decisiones."]
+ ],
+ outcomes:{
+  yes:["green","Poner en marcha el plan.","Revisar periódicamente si continúa respondiendo a las necesidades del paciente."],
+  no:["yellow","Completar el plan con el paciente.","Identificar las decisiones pendientes y programar una nueva conversación."]
+ }
+},
+{
+ title:"Evaluación de atención domiciliaria",
+ desc:"Se explora si el paciente desea recibir atención en casa y si existen condiciones clínicas, familiares y organizativas para hacerlo de forma segura.",
+ responsible:"Equipo paliativo, enfermería, trabajo social, paciente y cuidador.",
+ tasks:[
+  "Preguntar dónde desea recibir atención.",
+  "Evaluar viabilidad clínica del domicilio.",
+  "Identificar cuidador y recursos disponibles.",
+  "Evaluar condiciones físicas y acceso al domicilio.",
+  "Revisar medicación, equipos y materiales necesarios.",
+  "Definir contacto ante crisis y seguimiento."
+ ],
+ decision:"¿La atención domiciliaria es deseada y clínicamente viable?",
+ options:[
+  ["yes","Sí, es deseada y viable."],
+  ["no","No es viable o el paciente prefiere otra modalidad."],
+  ["later","Todavía faltan condiciones para decidir."]
+ ],
+ outcomes:{
+  yes:["green","Preparar el plan domiciliario.","Coordinar los recursos y la transición de atención."],
+  no:["blue","Organizar una alternativa segura.","Considerar atención hospitalaria u otra modalidad, respetando las preferencias del paciente."],
+  later:["yellow","Resolver condiciones pendientes.","Identificar qué falta y quién debe gestionarlo antes de reevaluar."]
+ }
+},
+{
+ title:"Atención domiciliaria y seguimiento",
+ desc:"Cuando se acuerda la atención en casa, el equipo debe garantizar continuidad, apoyo al cuidador y respuesta ante cambios clínicos.",
+ responsible:"Equipo paliativo domiciliario, enfermería, médico responsable y cuidador.",
+ tasks:[
+  "Confirmar que el paciente y cuidador conocen el plan.",
+  "Verificar disponibilidad de medicación y materiales.",
+  "Enseñar cuidados y medidas indicadas por el equipo.",
+  "Establecer frecuencia de visitas y seguimiento.",
+  "Proporcionar un canal de contacto ante problemas.",
+  "Definir cómo actuar ante síntomas nuevos o crisis.",
+  "Revisar periódicamente si el domicilio sigue siendo adecuado."
+ ],
+ decision:"¿La atención domiciliaria puede mantenerse de forma segura y acorde con las preferencias?",
+ options:[
+  ["yes","Sí, puede continuar."],
+  ["no","No, se necesita cambiar la modalidad."],
+  ["urgent","Existe una crisis que requiere respuesta inmediata."]
+ ],
+ outcomes:{
+  yes:["green","Mantener seguimiento.","Continuar el plan y adaptarlo a los cambios en las necesidades."],
+  no:["yellow","Reevaluar la modalidad de atención.","Coordinar una alternativa segura sin culpabilizar al paciente ni a la familia."],
+  urgent:["red","Activar el plan de crisis.","Seguir las instrucciones clínicas y el circuito de urgencias establecido."]
+ }
+},
+{
+ title:"Atención en los últimos días",
+ desc:"Cuando el paciente entra en la etapa de últimos días, el objetivo es priorizar confort, dignidad, alivio del sufrimiento y respeto de sus preferencias.",
+ responsible:"Equipo paliativo, enfermería, médico responsable y familia según preferencias del paciente.",
+ tasks:[
+  "Realizar evaluación clínica de la situación.",
+  "Revisar síntomas y necesidades de confort.",
+  "Asegurar que el plan de medicación y cuidados esté actualizado.",
+  "Respetar preferencias y decisiones previamente expresadas.",
+  "Acompañar a familiares y cuidadores.",
+  "Si el paciente desea estar en casa y es clínicamente viable, coordinar los recursos necesarios.",
+  "Si se requiere atención institucional, garantizar acompañamiento y dignidad."
+ ],
+ decision:"¿El lugar de atención elegido es viable y responde a las necesidades actuales?",
+ options:[
+  ["yes","Sí, puede mantenerse la modalidad acordada."],
+  ["no","No, necesita otra modalidad de atención."],
+  ["urgent","Hay síntomas o sufrimiento que requieren respuesta urgente."]
+ ],
+ outcomes:{
+  yes:["green","Mantener el plan de confort.","Acompañar al paciente y su familia, respetando sus preferencias."],
+  no:["blue","Coordinar una alternativa asistencial.","Priorizar seguridad, alivio del sufrimiento y dignidad."],
+  urgent:["red","Activar respuesta clínica inmediata.","Aplicar el protocolo de manejo de crisis y reevaluar el plan."]
+ }
+},
+{
+ title:"Acompañamiento familiar y duelo",
+ desc:"La atención no termina con el fallecimiento. La familia puede necesitar orientación, apoyo emocional y acompañamiento durante el duelo.",
+ responsible:"Psicólogo, trabajador social, equipo paliativo y asesor espiritual si se desea.",
+ tasks:[
+  "Ofrecer información y acompañamiento a la familia.",
+  "Respetar las creencias y formas de vivir el duelo.",
+  "Identificar familiares que requieren apoyo adicional.",
+  "Ofrecer seguimiento psicológico cuando esté indicado.",
+  "Facilitar orientación sobre recursos comunitarios.",
+  "Revisar con el equipo la continuidad y calidad del proceso."
+ ],
+ decision:"¿La familia necesita seguimiento o apoyo adicional?",
+ options:[
+  ["yes","Sí, requiere acompañamiento."],
+  ["no","No solicita apoyo adicional en este momento."]
+ ],
+ outcomes:{
+  yes:["green","Ofrecer continuidad de apoyo.","Coordinar los recursos psicológicos, sociales o espirituales que la familia desee."],
+  no:["blue","Dejar abierta la posibilidad de apoyo.","Informar cómo solicitar ayuda si aparece una necesidad posterior."]
+ }
+}
+];
+
+// Estado de la aplicación
+let currentStage = 0;
+let completed = {};
+let decisions = {};
+let notes = {};
+let taskChecks = {};
+
+function showTab(tab,button) {
+  const ids = ["route","team","communication","alerts","home","summary"];
+
+  ids.forEach(id => {
+    document.getElementById(id+"Tab").classList.add("hidden");
+  });
+
+  document.getElementById(tab+"Tab").classList.remove("hidden");
+
+  document.querySelectorAll(".tab").forEach(b => {
+    b.classList.remove("active");
+  });
+
+  if(button) button.classList.add("active");
+
+  if(tab === "summary") renderSummary();
+}
+
+function renderStageList() {
+  const list = document.getElementById("stageList");
+  list.innerHTML = "";
+
+  stages.forEach((stage,index) => {
+    const button = document.createElement("button");
+
+    button.className = "stage-link" +
+      (index === currentStage ? " active" : "") +
+      (completed[index] === true ? " done" : "");
+
+    button.innerHTML = `
+      <span class="stage-number">
+        ${completed[index] === true ? "✓" : index+1}
+      </span>
+      <span class="stage-name">${stage.title}</span>
+    `;
+
+    button.onclick = () => {
+      currentStage = index;
+      renderStage();
+    };
+
+    list.appendChild(button);
+  });
+
+  // CORRECCIÓN: contar únicamente etapas revisadas.
+  const totalStages = stages.length;
+
+  const reviewedStages = stages.filter(
+    (_,index) => completed[index] === true
+  ).length;
+
+  const percentage = (reviewedStages / totalStages) * 100;
+
+  document.getElementById("progressFill").style.width =
+    percentage + "%";
+
+  document.getElementById("progressLabel").textContent =
+    reviewedStages + " de " + totalStages +
+    " etapas revisadas · " + percentage.toFixed(0) + "%";
+}
+
+function renderStage() {
+  const s = stages[currentStage];
+  const content = document.getElementById("stageContent");
+
+  const taskHTML = s.tasks.map((task,index) => {
+    const key = currentStage + "_" + index;
+
+    return `
+      <label class="check-item">
+        <input type="checkbox"
+          ${taskChecks[key] ? "checked" : ""}
+          onchange="saveTask(${currentStage},${index},this.checked)">
+        <span>${task}</span>
+      </label>
+    `;
+  }).join("");
+
+  const optionHTML = s.options.map(option => `
+    <label class="option">
+      <input type="radio"
+        name="decision"
+        value="${option[0]}"
+        ${decisions[currentStage] === option[0] ? "checked" : ""}
+        onchange="selectDecision('${option[0]}')">
+      <span>${option[1]}</span>
+    </label>
+  `).join("");
+
+  content.innerHTML = `
+    <div class="stage-kicker">Etapa ${currentStage+1} de 11</div>
+
+    <h2 class="stage-title">${s.title}</h2>
+
+    <p class="stage-description">${s.desc}</p>
+
+    <div class="info-box blue">
+      <strong>Responsable principal</strong>
+      ${s.responsible}
+    </div>
+
+    <h3 class="section-title">Acciones que deben realizarse</h3>
+    <div class="checklist">${taskHTML}</div>
+
+    <h3 class="section-title">Punto de decisión</h3>
+
+    <div class="decision">
+      <h4>${s.decision}</h4>
+      ${optionHTML}
+      <div id="decisionResult" class="result"></div>
+    </div>
+
+    <h3 class="section-title">Observaciones de la etapa</h3>
+
+    <div class="field">
+      <textarea
+        id="stageNote"
+        placeholder="Escribir observaciones generales o pendientes (sin datos personales)..."
+      ></textarea>
+    </div>
+
+    <div class="info-box teal">
+      <strong>Objetivo de esta etapa</strong>
+      Completar las acciones necesarias, documentar la decisión
+      y asegurar la continuidad del proceso.
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-secondary"
+        onclick="changeStage(-1)"
+        ${currentStage===0 ? "disabled" : ""}>
+        ← Anterior
+      </button>
+
+      <button class="btn btn-primary" onclick="completeStage()">
+        Marcar etapa revisada
+      </button>
+
+      <button class="btn btn-teal"
+        onclick="changeStage(1)"
+        ${currentStage===10 ? "disabled" : ""}>
+        Siguiente →
+      </button>
+    </div>
+  `;
+
+  // Recuperar las observaciones guardadas.
+  const noteField = document.getElementById("stageNote");
+  noteField.value = notes[currentStage] || "";
+
+  // Guardar mientras el usuario escribe.
+  noteField.addEventListener("input",function() {
+    notes[currentStage] = this.value;
+  });
+
+  if(decisions[currentStage]) {
+    showDecisionResult(decisions[currentStage]);
+  }
+
+  renderStageList();
+}
+
+function saveTask(stage,index,checked) {
+  const key = stage + "_" + index;
+  taskChecks[key] = checked;
+}
+
+function selectDecision(value) {
+  decisions[currentStage] = value;
+  showDecisionResult(value);
+}
+
+function showDecisionResult(value) {
+  const s = stages[currentStage];
+  const outcome = s.outcomes[value];
+
+  if(!outcome) return;
+
+  const result = document.getElementById("decisionResult");
+
+  result.className = "result show " + outcome[0];
+
+  result.innerHTML = `
+    <strong>${outcome[1]}</strong>
+    ${outcome[2]}
+  `;
+}
+
+function completeStage() {
+  if(!decisions[currentStage]) {
+    alert("Selecciona primero una opción en el punto de decisión.");
+    return;
+  }
+
+  // Marcar exclusivamente esta etapa como revisada.
+  completed[currentStage] = true;
+
+  renderStageList();
+
+  if(currentStage < stages.length-1) {
+    const next = confirm(
+      "Etapa revisada. ¿Deseas continuar a la siguiente?"
+    );
+
+    if(next) changeStage(1);
+  } else {
+    alert("Has llegado al final del recorrido. Puedes revisar el resumen.");
+  }
+}
+
+function changeStage(direction) {
+  const next = currentStage + direction;
+
+  if(next < 0 || next >= stages.length) return;
+
+  currentStage = next;
+  renderStage();
+}
+
+function checkReferral() {
+  const status = document.getElementById("referralStatus").value;
+  const deadline = document.getElementById("deadlineStatus").value;
+  const result = document.getElementById("referralResult");
+
+  let cls = "blue";
+  let title = "";
+  let text = "";
+
+  if(status === "received") {
+    title = "Derivación recibida";
+    text = "Confirmar responsable de valoración y fecha de atención. Mantener coordinación con oncología.";
+  } else if(status === "clinical") {
+    title = "Decisión clínica documentada";
+    text = "Registrar la justificación clínica y el plan de seguimiento o reevaluación. Si hay necesidades urgentes, atenderlas sin demora.";
+  } else if(status === "pending" && deadline === "yes") {
+    cls = "red";
+    title = "Escalamiento al coordinador de red";
+    text = "Verificar la causa de la demora, contactar al servicio responsable y facilitar la resolución. No dejar la solicitud sin seguimiento.";
+  } else if(status === "sent") {
+    title = "Solicitud enviada";
+    text = "Confirmar que el equipo paliativo recibió la solicitud y asignó un responsable.";
+  } else if(deadline === "unknown") {
+    cls = "yellow";
+    title = "Plazo no definido o desconocido";
+    text = "Consultar el plazo institucional aprobado. No inventar un plazo ni considerar que el proceso está controlado sin verificarlo.";
+  } else {
+    cls = "yellow";
+    title = "Derivación pendiente";
+    text = "Realizar seguimiento dentro del plazo institucional y documentar el estado de la solicitud.";
+  }
+
+  result.className = "result show " + cls;
+  result.innerHTML = "<strong>"+title+"</strong>"+text;
+}
+
+function evaluateHome() {
+  const checks = document.querySelectorAll(
+    "#homeChecklist input[type='checkbox']"
+  );
+
+  const total = checks.length;
+  const checked = [...checks].filter(c => c.checked).length;
+
+  const result = document.getElementById("homeResult");
+
+  if(checked === total) {
+    result.className = "result show green";
+    result.innerHTML = `
+      <strong>Lista de verificación completada.</strong>
+      Todos los puntos han sido revisados. Esto no equivale a
+      una autorización clínica automática: el equipo debe confirmar
+      la viabilidad y acordar el plan con el paciente.
+    `;
+  } else {
+    result.className = "result show yellow";
+    result.innerHTML = `
+      <strong>Evaluación incompleta: ${checked} de ${total} puntos revisados.</strong>
+      Identificar las condiciones pendientes y asignar responsables.
+      No asumir que la atención domiciliaria es viable hasta completar
+      la valoración profesional.
+    `;
+  }
+}
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g,function(char) {
+    return {
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#039;"
+    }[char];
+  });
+}
+
+function renderSummary() {
+  const box = document.getElementById("summaryContent");
+
+  const reviewedStages = stages.filter(
+    (_,index) => completed[index] === true
+  ).length;
+
+  let html = `
+    <div class="info-box blue">
+      <strong>Progreso general</strong>
+      ${reviewedStages} de 11 etapas revisadas.
+    </div>
+  `;
+
+  stages.forEach((s,i) => {
+    const decision = decisions[i];
+    const outcome = decision ? s.outcomes[decision] : null;
+
+    html += `
+      <div class="mini-card" style="margin:10px 0">
+        <h3>${i+1}. ${s.title}</h3>
+        <p><strong>Estado:</strong>
+          ${completed[i] ? "Revisada" : "Pendiente de revisión"}
+        </p>
+        <p><strong>Decisión:</strong>
+          ${outcome ? outcome[1] : "No seleccionada"}
+        </p>
+        <p><strong>Observación:</strong>
+          ${escapeHTML(notes[i] || "Sin observaciones")}
+        </p>
+      </div>
+    `;
+  });
+
+  box.innerHTML = html;
+}
+
+function resetProgress() {
+  if(!confirm(
+    "¿Deseas reiniciar las decisiones, observaciones y el progreso?"
+  )) return;
+
+  completed = {};
+  decisions = {};
+  notes = {};
+  taskChecks = {};
+  currentStage = 0;
+
+  renderStage();
+  renderSummary();
+}
+
+// Inicio de la aplicación.
+renderStage();
+</script>
+
+</body>
+</html>
